@@ -13,6 +13,10 @@ function TaskItem({ id, description, date }) {
     });
   }
 
+  onCompleteHandler = () => {
+    alert(id);
+  }
+
   return (
     <Pressable
       onPress={taskPressHandler}
@@ -27,6 +31,7 @@ function TaskItem({ id, description, date }) {
         </View>
         <View >
           <Button
+          onPress={onCompleteHandler}
             title="Done"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"

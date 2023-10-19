@@ -16,6 +16,7 @@ import IconButton from './components/UI/AuthIconButton';
 import ManageTask from './screens/ManageTask';
 import RecentTasks from './screens/RecentTasks';
 import AllTasks from './screens/AllTasks';
+import CompletedTasks from './screens/CompletedTasks';
 import { GlobalStyles } from './constants/styles';
 import { View } from 'react-native';
 
@@ -115,7 +116,7 @@ function TasksOverview() {
       />
       <BottomTabs.Screen
         name="Completed"
-        component={AllTasks}
+        component={CompletedTasks}
         options={{
           title: 'Completed Tasks',
           tabBarLabel: 'Completed Tasks',
