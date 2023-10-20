@@ -5,7 +5,8 @@ import ErrorOverlay from '../components/UI/ErrorOverlay';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import { AuthContext } from '../store/auth-context';
 import { getDateMinusDays } from '../util/date';
-import { fetchTasks } from '../util/http';
+import { fetchTasks } from '../services/task';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function RecentTasks() {
   const [isFetching, setIsFetching] = useState(true);
@@ -17,7 +18,10 @@ function RecentTasks() {
     async function gettasks() {
       setIsFetching(true);
       try {
-        const tasks = await fetchTasks(tasksCtx.token, tasksCtx.userId);
+        // TODO - for some reason tasksCTx is not retriving userId on very first load. need to check the issue.
+        // TODO for not it is taken care by AsyncStorage option.
+        const userId = await AsyncStorage.getItem('localId');
+        const tasks = await fetchTasks(tasksCtx.token,userId);
         tasksCtx.settasks(tasks);
       } catch (error) {
         setError('Could not fetch tasks!');

@@ -1,7 +1,7 @@
 import axios from 'axios';
-const BACKEND_URL ='https://todo-app-cedca-default-rtdb.asia-southeast1.firebasedatabase.app';
+const BACKEND_URL = process.env.EXPO_PUBLIC_API_URL;
 
-
+// this is for storig data in firebase relatime database
 export async function storeTask(taskData) {
   const {token} = taskData;
   const response = await axios.post(BACKEND_URL + '/tasks.json?auth='+token, taskData);
@@ -9,8 +9,12 @@ export async function storeTask(taskData) {
   return id;
 }
 
+// this is for extracting all user-specific tasks from firebaseDB
 export async function fetchTasks(token, userId) {
-  const response = await axios.get(BACKEND_URL + '/tasks.json?auth='+token+'&timeout=10s&orderBy="userId"&equalTo="'+userId+'"');
+  // console.log('token',token);
+  // console.log('userId',userId);
+  // console.log(BACKEND_URL + '/tasks.json?auth='+token+'&orderBy="userId"&equalTo="'+userId+'"');
+  const response = await axios.get(BACKEND_URL + '/tasks.json?auth='+token+'&orderBy="userId"&equalTo="'+userId+'"');
   const tasks = [];
   for (const key in response.data) {
     const taskObj = {
@@ -25,11 +29,13 @@ export async function fetchTasks(token, userId) {
   return tasks;
 }
 
+// this is for updating specific tasks
 export function updateTask(id, taskData) {
   const {token} = taskData;
   return axios.put(BACKEND_URL + `/tasks/${id}.json?auth=`+token, taskData);
 }
 
+// this is for deleting specific tasks
 export function deleteTask(id, token) {
   return axios.delete(BACKEND_URL + `/tasks/${id}.json?auth=`+token);
 }

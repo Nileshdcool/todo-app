@@ -150,7 +150,7 @@ function Root() {
       const storedToken = await AsyncStorage.getItem('token');
       const storedLocalId = await AsyncStorage.getItem('localId');
 
-      if (storedToken) {
+      if (storedToken ) {
         authCtx.authenticate(storedToken,storedLocalId);
       }
 

@@ -6,7 +6,7 @@ import IconButton from '../components/UI/IconButton';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import { GlobalStyles } from '../constants/styles';
 import { AuthContext } from '../store/auth-context';
-import { storeTask, updateTask, deleteTask } from '../util/http';
+import { storeTask, updateTask, deleteTask } from '../services/task';
 import ErrorOverlay from '../components/UI/ErrorOverlay';
 
 function ManageTask({ route, navigation }) {

@@ -5,7 +5,7 @@ import { GlobalStyles } from '../../constants/styles';
 import { getFormattedDate } from '../../util/date';
 import { AuthContext } from '../../store/auth-context';
 
-import { storeTask, updateTask, deleteTask } from '../../util/http';
+import { storeTask, updateTask, deleteTask } from '../../services/task';
 import { useContext, useLayoutEffect, useState } from 'react';
 
 function TaskItem({ id, description, date, status, userId}) {

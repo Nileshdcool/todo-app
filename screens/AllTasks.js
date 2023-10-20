@@ -4,10 +4,12 @@ import TasksOutput from '../components/TasksOutput/TasksOutput'
 import { AuthContext } from '../store/auth-context';
 
 function AllTasks() {
+  
+  // extracting all tasks store in context api and filtering as per task status
+
   const tasksCtx = useContext(AuthContext);
 
   const allTasks = tasksCtx.tasks.filter((task) => {
-    console.log(task);
     return task.status === 'TODO';
   });
 
