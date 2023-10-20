@@ -3,9 +3,14 @@ import { useNavigation } from '@react-navigation/native';
 
 import { GlobalStyles } from '../../constants/styles';
 import { getFormattedDate } from '../../util/date';
+import { AuthContext } from '../../store/auth-context';
 
-function TaskItem({ id, description, date, status }) {
+import { storeTask, updateTask, deleteTask } from '../../util/http';
+import { useContext, useLayoutEffect, useState } from 'react';
+
+function TaskItem({ id, description, date, status, userId}) {
   const navigation = useNavigation();
+  const tasksCtx = useContext(AuthContext);
 
   function taskPressHandler() {
     if (status === 'TODO') {
@@ -15,8 +20,11 @@ function TaskItem({ id, description, date, status }) {
     }
   }
 
-  onCompleteHandler = async() => {
-    alert(id);
+  onCompleteHandler = async () => {
+    const token = tasksCtx.token;
+    await updateTask(id, { description, date, status: 'COMPLETED', token, userId, id });
+    tasksCtx.updateTask(id, { description, date, status: 'COMPLETED', userId, id });
+    //(id);
   }
 
   return (
@@ -33,7 +41,7 @@ function TaskItem({ id, description, date, status }) {
         </View>
         {status === 'TODO' && <View >
           <Button
-          onPress={onCompleteHandler}
+            onPress={onCompleteHandler}
             title="Done"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"
