@@ -13,7 +13,7 @@ function TaskItem({ id, description, date }) {
     });
   }
 
-  onCompleteHandler = () => {
+  onCompleteHandler = async() => {
     alert(id);
   }
 

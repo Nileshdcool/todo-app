@@ -3,13 +3,14 @@ const BACKEND_URL ='https://todo-app-cedca-default-rtdb.asia-southeast1.firebase
 
 
 export async function storeTask(taskData) {
+  console.log(taskData);
   const {token} = taskData;
   const response = await axios.post(BACKEND_URL + '/tasks.json?auth='+token, taskData);
   const id = response.data.name;
   return id;
 }
 
-export async function fetchtasks(token) {
+export async function fetchTasks(token, userId) {
   const response = await axios.get(BACKEND_URL + '/tasks.json?auth='+token);
   const tasks = [];
   for (const key in response.data) {
@@ -28,6 +29,6 @@ export function updateTask(id, taskData) {
   return axios.put(BACKEND_URL + `/tasks/${id}.json?auth=`+token, taskData);
 }
 
-export function deleteTask(id) {
+export function deleteTask(id, token) {
   return axios.delete(BACKEND_URL + `/tasks/${id}.json?auth=`+token);
 }

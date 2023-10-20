@@ -5,7 +5,7 @@ import ErrorOverlay from '../components/UI/ErrorOverlay';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import { AuthContext } from '../store/auth-context';
 import { getDateMinusDays } from '../util/date';
-import { fetchtasks } from '../util/http';
+import { fetchTasks } from '../util/http';
 
 function RecentTasks() {
   const [isFetching, setIsFetching] = useState(true);
@@ -17,7 +17,7 @@ function RecentTasks() {
     async function gettasks() {
       setIsFetching(true);
       try {
-        const tasks = await fetchtasks(tasksCtx.token);
+        const tasks = await fetchTasks(tasksCtx.token, tasksCtx.userId);
         tasksCtx.settasks(tasks);
       } catch (error) {
         setError('Could not fetch tasks!');

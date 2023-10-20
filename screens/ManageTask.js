@@ -31,7 +31,7 @@ function ManageTask({ route, navigation }) {
   async function deleteTaskHandler() {
     setIsSubmitting(true);
     try {
-      await deleteTask(editedTaskId);
+      await deleteTask(editedTaskId,tasksCtx.token);
       tasksCtx.deleteTask(editedTaskId);
       navigation.goBack();
     } catch (error) {
@@ -46,11 +46,12 @@ function ManageTask({ route, navigation }) {
 
   async function confirmHandler(taskData) {
     taskData.token = tasksCtx.token;
+    taskData.userId = tasksCtx.userId;
     setIsSubmitting(true);
     try {
       if (isEditing) {
-        tasksCtx.updateTask(editedTaskId, taskData);
         await updateTask(editedTaskId, taskData);
+        tasksCtx.updateTask(editedTaskId, taskData);
       } else {
         const id = await storeTask(taskData);
         tasksCtx.addTask({ ...taskData, id: id });

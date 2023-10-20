@@ -4,14 +4,15 @@ import { createContext, useState, useReducer } from 'react';
 
 export const AuthContext = createContext({
   token: '',
+  userId: '',
   isAuthenticated: false,
-  authenticate: (token) => { },
+  authenticate: (token,localId) => { },
   logout: () => { },
   tasks: [],
   addTask: ({ description, date }) => { },
   settasks: (tasks) => { },
   deleteTask: (id) => { },
-  updateTask: (id, { description, date }) => { },
+  updateTask: (id, { description, date}) => { },
 });
 
 function tasksReducer(state, action) {
@@ -41,15 +42,18 @@ function tasksReducer(state, action) {
 
 function AuthContextProvider({ children }) {
   const [authToken, setAuthToken] = useState();
-
-  function authenticate(token) {
+  const [localId, setLocalId] = useState();
+  function authenticate(token,localId) {
     setAuthToken(token);
+    setLocalId(localId);
     AsyncStorage.setItem('token', token);
+    AsyncStorage.setItem('localId', localId);
   }
 
   function logout() {
     setAuthToken(null);
     AsyncStorage.removeItem('token');
+    AsyncStorage.removeItem('localId');
   }
 
 
@@ -74,6 +78,7 @@ function AuthContextProvider({ children }) {
 
   const value = {
     token: authToken,
+    userId: localId,
     isAuthenticated: !!authToken,
     authenticate: authenticate,
     logout: logout,
