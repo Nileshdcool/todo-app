@@ -13,7 +13,6 @@ function CompletedTasks() {
   return (
     <TasksOutput
     tasks={completedTasks}
-      tasksPeriod="Total"
       fallbackText="No registered tasks found!"
     />
   );

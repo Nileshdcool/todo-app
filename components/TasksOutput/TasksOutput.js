@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { GlobalStyles } from '../../constants/styles';
 import TaskList from './TaskList';
 
-function TasksOutput({ tasks, tasksPeriod, fallbackText }) {
+function TasksOutput({ tasks, fallbackText }) {
   let content = <Text style={styles.infoText}>{fallbackText}</Text>;
 
   if (tasks.length > 0) {

@@ -40,13 +40,12 @@ function RecentTasks() {
     const today = new Date();
     const date7DaysAgo = getDateMinusDays(today, 7);
 
-    return task.date >= date7DaysAgo && task.date <= today;
+    return task.date >= date7DaysAgo && task.date <= today && task.status === 'TODO';
   });
 
   return (
     <TasksOutput
       tasks={recenttasks}
-      tasksPeriod="Last 7 Days"
       fallbackText="No tasks registered for the last 7 days."
     />
   );

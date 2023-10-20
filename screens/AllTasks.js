@@ -6,10 +6,14 @@ import { AuthContext } from '../store/auth-context';
 function AllTasks() {
   const tasksCtx = useContext(AuthContext);
 
+  const allTasks = tasksCtx.tasks.filter((task) => {
+    console.log(task);
+    return task.status === 'TODO';
+  });
+
   return (
     <TasksOutput
-    tasks={tasksCtx.tasks}
-      tasksPeriod="Total"
+    tasks={allTasks}
       fallbackText="No registered tasks found!"
     />
   );

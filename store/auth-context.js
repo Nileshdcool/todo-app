@@ -21,7 +21,6 @@ function tasksReducer(state, action) {
     case 'ADD':
       return [action.payload, ...state];
     case 'SET':
-      console.log('hello',action);
       const inverted = action.payload.reverse();
       return inverted;
     case 'UPDATE':

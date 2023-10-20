@@ -4,13 +4,15 @@ import { useNavigation } from '@react-navigation/native';
 import { GlobalStyles } from '../../constants/styles';
 import { getFormattedDate } from '../../util/date';
 
-function TaskItem({ id, description, date }) {
+function TaskItem({ id, description, date, status }) {
   const navigation = useNavigation();
 
   function taskPressHandler() {
-    navigation.navigate('ManageTask', {
-      taskId: id
-    });
+    if (status === 'TODO') {
+      navigation.navigate('ManageTask', {
+        taskId: id
+      });
+    }
   }
 
   onCompleteHandler = async() => {
@@ -29,14 +31,14 @@ function TaskItem({ id, description, date }) {
           </Text>
           <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
         </View>
-        <View >
+        {status === 'TODO' && <View >
           <Button
           onPress={onCompleteHandler}
             title="Done"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"
           />
-        </View>
+        </View>}
       </View>
     </Pressable>
   );
