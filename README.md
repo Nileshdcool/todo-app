@@ -3,7 +3,9 @@
 
 TodoX: Simplify your life with our intuitive to-do app. Organize tasks, set priorities, and stay on top of your responsibilities effortlessly.
 
+<img src="https://github.com/Nileshdcool/todo-app/blob/dev/screenshots/splash.png?raw=true" alt="drawing" width="200"/>
 
+![App Screenshot](https://github.com/Nileshdcool/todo-app/blob/dev/screenshots/splash.png?raw=true)
 
 
 ## Features
