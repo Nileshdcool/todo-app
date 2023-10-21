@@ -12,6 +12,10 @@ TodoX: Simplify your life with our intuitive to-do app. Organize tasks, set prio
 - Check All Completed Tasks
 - Mark Task As completed once done
 
+## Screenshots
+
+![App Screenshot](https://github.com/Nileshdcool/todo-app/blob/dev/screenshots/todox-screenshots.png?raw=true)
+
 
 ## Environment Variables
 
