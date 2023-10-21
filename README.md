@@ -12,7 +12,8 @@
 5. eas build -p ios --profile preview
 <!-- prod builds -->
 6. eos build --platform android
-6. eos build --platform ios
+7. eos build --platform ios
+8. npx expo run:ios --no-build-cache
 
 ### IOS / Android Manual steps 
 
